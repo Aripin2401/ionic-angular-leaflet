@@ -26,9 +26,12 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "axios": "^1.1.2",
     "ionicons": "^6.0.3",
     "leaflet": "^1.9.2",
+    "leaflet-control-geocoder": "^2.4.0",
     "leaflet-routing-machine": "^3.2.12",
+    "leaflet-sidebar-v2": "^3.2.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
