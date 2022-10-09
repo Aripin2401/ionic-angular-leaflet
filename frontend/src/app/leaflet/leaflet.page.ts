@@ -14,23 +14,23 @@ export class LeafletPage {
   constructor() { }
 
   ionViewDidEnter() {
-    this.map = L.map('map').setView([-6.934262277308666, 107.62608039631637], 13);
+    this.map = L.map('map').setView([-6.957761928333558, 107.60831075345683], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
       maxZoom: 18,
     }).addTo(this.map);
 
-    // const GeocoderControl = new Geocoder();
-    // GeocoderControl.addTo(this.map);
-    // GeocoderControl.on('markgeocode', function (e) {
-    // console.log(e);
-    // });
-
+    //add marker on location map
+    L.marker([-6.957761928333558, 107.60831075345683]).addTo(this.map);
+    
+    //add click on map with marker
+    this.map.on('click', (e) => {
+      const marker = L.marker(e.latlng).addTo(this.map);
       L.Routing.control({ 
         //Adding waypoints
         waypoints: [
-          L.latLng(-6.934262277308666, 107.62608039631637),
-          L.latLng(-6.934262277308666, 107.62608039631637)
+          L.latLng(-6.957761928333558, 107.60831075345683),
+          L.latLng(e.latlng.lat, e.latlng.lng)
         ],
         //Adding a route planner
         routeWhileDragging: true,
@@ -38,7 +38,23 @@ export class LeafletPage {
         show: true,
         //Adding a sidebar
         collapsible: true,        
-    }).addTo(this.map);
+    }).on('routesfound', function(e) {
+        console.log(e);
+        e.routes[0].coordinates.forEach(function(coord, index) {
+          setTimeout(function() {
+            marker.setLatLng([coord.lat, coord.lng]);
+          }, index * 100);
+        })
+        }).addTo(this.map);
+    });
+
+    //search geocoder location
+     const GeocoderControl = new Geocoder();
+     GeocoderControl.addTo(this.map);
+     GeocoderControl.on('markgeocode', function (e) {
+     console.log(e);
+     });
+
   }
 
 }
