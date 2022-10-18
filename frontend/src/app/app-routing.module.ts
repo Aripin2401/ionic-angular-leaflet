@@ -20,6 +20,10 @@ const routes: Routes = [
     // eslint-disable-next-line max-len
     loadChildren: () => import('./leaflet-search-geolocation/leaflet-search-geolocation.module').then( m => m.LeafletSearchGeolocationPageModule)
   },
+  {
+    path: 'leaflet-click-popup',
+    loadChildren: () => import('./leaflet-click-popup/leaflet-click-popup.module').then( m => m.LeafletClickPopupPageModule)
+  },
 ];
 
 @NgModule({
