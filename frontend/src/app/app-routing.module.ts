@@ -12,8 +12,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'leaflet',
-    loadChildren: () => import('./leaflet/leaflet.module').then( m => m.LeafletPageModule)
+    path: 'leaflet-routing-machine',
+    loadChildren: () => import('./leaflet-routing-machine/leaflet.module').then( m => m.LeafletPageModule)
+  },
+  {
+    path: 'leaflet-search-geolocation',
+    // eslint-disable-next-line max-len
+    loadChildren: () => import('./leaflet-search-geolocation/leaflet-search-geolocation.module').then( m => m.LeafletSearchGeolocationPageModule)
   },
 ];
 

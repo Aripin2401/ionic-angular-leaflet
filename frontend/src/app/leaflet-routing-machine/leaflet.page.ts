@@ -26,6 +26,10 @@ export class LeafletPage {
     //add click on map with marker
     this.map.on('click', (e) => {
       const marker = L.marker(e.latlng).addTo(this.map);
+
+      //update marker location with api
+      
+
       L.Routing.control({ 
         //Adding waypoints
         waypoints: [
@@ -47,13 +51,6 @@ export class LeafletPage {
         })
         }).addTo(this.map);
     });
-
-    //search geocoder location
-     const GeocoderControl = new Geocoder();
-     GeocoderControl.addTo(this.map);
-     GeocoderControl.on('markgeocode', function (e) {
-     console.log(e);
-     });
 
   }
 
